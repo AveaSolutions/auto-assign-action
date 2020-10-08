@@ -4,6 +4,7 @@ import * as utils from './utils'
 import * as handler from './handler'
 
 export async function run() {
+  core.info("Running Yashko's version of this app.")
   try {
     const token = core.getInput('repo-token', { required: true })
     const configPath = core.getInput('configuration-path', {

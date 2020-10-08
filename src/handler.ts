@@ -110,7 +110,6 @@ export async function handlePullRequest(
   }
 
   if (addTeamReviewers) {
-    // Add team reviewers here
     try {
       const teams = utils.chooseTeams(owner, config)
 
