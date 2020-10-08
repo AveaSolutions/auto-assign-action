@@ -194,7 +194,7 @@ describe('fetchConfigurationFile', () => {
       getContents: jest.fn().mockImplementation(async () => ({
         data: {
           content:
-            'IyBTZXQgdG8gdHJ1ZSB0byBhZGQgcmV2aWV3ZXJzIHRvIHB1bGwgcmVxdWVzdHMNCmFkZFJldmlld2VyczogdHJ1ZQ0KDQojIFNldCB0byB0cnVlIHRvIGFkZCBhc3NpZ25lZXMgdG8gcHVsbCByZXF1ZXN0cw0KYWRkQXNzaWduZWVzOiBmYWxzZQ0KDQojIEEgbGlzdCBvZiByZXZpZXdlcnMgdG8gYmUgYWRkZWQgdG8gcHVsbCByZXF1ZXN0cyAoR2l0SHViIHVzZXIgbmFtZSkNCnJldmlld2VyczoNCiAgLSByZXZpZXdlckENCiAgLSByZXZpZXdlckINCiAgLSByZXZpZXdlckM=',
+            'IyBTZXQgdG8gdHJ1ZSB0byBhZGQgcmV2aWV3ZXJzIHRvIHB1bGwgcmVxdWVzdHMKYWRkUmV2aWV3ZXJzOiB0cnVlCgojIFNldCB0byB0cnVlIHRvIGFkZCBhc3NpZ25lZXMgdG8gcHVsbCByZXF1ZXN0cwphZGRBc3NpZ25lZXM6IGZhbHNlCgojIFNldCB0byB0cnVlIHRvIGFkZCB0ZWFtcyB0byByZXZpZXcgcHVsbCByZXF1ZXN0cwphZGRUZWFtUmV2aWV3ZXJzOiB0cnVlCgojIEEgbGlzdCBvZiByZXZpZXdlcnMgdG8gYmUgYWRkZWQgdG8gcHVsbCByZXF1ZXN0cyAoR2l0SHViIHVzZXIgbmFtZSkKcmV2aWV3ZXJzOgogIC0gcmV2aWV3ZXJBCiAgLSByZXZpZXdlckIKICAtIHJldmlld2VyQwoKIyBBIGxpc3Qgb2YgdGVhbXMgdG8gYmUgYWRkZWQgdG8gcHVsbCByZXF1ZXN0cyAoR2l0SHViIHVzZXIgbmFtZSkKdGVhbVJldmlld2VyczoKICAtIHRlYW1B',
         },
       })),
     } as any
@@ -210,6 +210,8 @@ describe('fetchConfigurationFile', () => {
       addAssignees: false,
       addReviewers: true,
       reviewers: ['reviewerA', 'reviewerB', 'reviewerC'],
+      addTeamReviewers: true,
+      teamReviewers: ['teamA'],
     })
   })
 

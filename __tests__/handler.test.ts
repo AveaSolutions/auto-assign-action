@@ -892,4 +892,30 @@ describe('handlePullRequest', () => {
       /reviewer/
     )
   })
+
+  test('adds team reviewers', async () => {
+    const config = {
+      addTeamReviewers: true,
+      teamReviewers: ['team1'],
+    } as any
+
+    const client = new github.GitHub('token')
+
+    client.pulls = {
+      createReviewRequest: jest.fn().mockImplementation(async () => {}),
+    } as any
+    const createReviewRequestSpy = jest.spyOn(
+      client.pulls,
+      'createReviewRequest'
+    )
+
+    await handler.handlePullRequest(client, context, config)
+
+    expect(createReviewRequestSpy.mock.calls[0][0].team_reviewers).toHaveLength(
+      1
+    )
+    expect(createReviewRequestSpy.mock.calls[0][0].team_reviewers[0]).toMatch(
+      'team1'
+    )
+  })
 })
