@@ -62,6 +62,18 @@ export function chooseAssignees(owner: string, config: Config): string[] {
   return chosenAssignees
 }
 
+export function chooseTeams(owner: string, config: Config): string[] {
+  const { teamReviewers, addTeamReviewers } = config
+
+  if (addTeamReviewers) {
+    return teamReviewers
+  } else {
+    throw new Error(
+      "Error in configuration file to do with using addTeamReviewers. The 'addTeamReviewers' variable was 'true' but no teams were found."
+    )
+  }
+}
+
 export function chooseUsers(
   candidates: string[],
   desiredNumber: number,

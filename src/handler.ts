@@ -7,7 +7,9 @@ import { PullRequest } from './pull_request'
 export interface Config {
   addReviewers: boolean
   addAssignees: boolean | string
+  addTeamReviewers: boolean
   reviewers: string[]
+  teamReviewers: string[]
   assignees: string[]
   filterLabels?: {
     include?: string[]
@@ -40,6 +42,7 @@ export async function handlePullRequest(
     assigneeGroups,
     addReviewers,
     addAssignees,
+    addTeamReviewers,
     filterLabels,
   } = config
 
@@ -100,6 +103,20 @@ export async function handlePullRequest(
       if (reviewers.length > 0) {
         await pr.addReviewers(reviewers)
         core.info(`Added reviewers to PR #${number}: ${reviewers.join(', ')}`)
+      }
+    } catch (error) {
+      core.warning(error.message)
+    }
+  }
+
+  if (addTeamReviewers) {
+    // Add team reviewers here
+    try {
+      const teams = utils.chooseTeams(owner, config)
+
+      if (teams.length > 0) {
+        await pr.addTeamReviewers(teams)
+        core.info(`Added team reviewers to PR #${number}: ${teams.join(', ')}`)
       }
     } catch (error) {
       core.warning(error.message)

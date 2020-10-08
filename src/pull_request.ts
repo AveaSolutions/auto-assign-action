@@ -33,6 +33,17 @@ export class PullRequest {
     core.debug(JSON.stringify(result))
   }
 
+  async addTeamReviewers(teams: string[]): Promise<void> {
+    const { owner, repo, number: pull_number } = this.context.issue
+    const result = await this.client.pulls.createReviewRequest({
+      owner,
+      repo,
+      pull_number,
+      team_reviewers: teams,
+    })
+    core.debug(JSON.stringify(result))
+  }
+
   hasAnyLabel(labels: string[]): boolean {
     if (!this.context.payload.pull_request) {
       return false
